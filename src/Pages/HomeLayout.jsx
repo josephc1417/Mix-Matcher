@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 
 const HomeLayout = () => {
@@ -6,8 +6,15 @@ const HomeLayout = () => {
     <> {/*All Elements here will he shared with all children*/}
           <Navbar />
           
-          {/*Outlet is used to render children routes*/}
-          <Outlet />
+
+
+
+
+          {/*The <Section> element will cast any and all CSS rule sets to corresponding  child elements to be rendered with custom formatting (styles) and layout */}
+          <Section className='page'>
+            {/*Outlet is used to render children routes*/}
+            <Outlet />
+          </Section>
     </>
   )
 }
