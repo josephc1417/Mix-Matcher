@@ -5,14 +5,17 @@ const cocktailSearchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.ph
 
 
 export const loader = async () => {
-const searchTerm = "margarita"
+const searchTerm = ""
 const response = await axios .get(`${cocktailSearchURL}${searchTerm}`)
 console.log(response)
-  return "something "
+  return {
+    data: response.data.drinks,
+    searchTerm
+  }
 }
 
 const Landing = () => {
-  const data = useLoaderData()
+  const {data, searchTerm} = useLoaderData()
   console.log(data)
   return (
     <div>
