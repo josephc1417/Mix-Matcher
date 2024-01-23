@@ -6,6 +6,8 @@ const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 
 export const loader = async () => {
 const searchTerm = "margarita"
+const response = await axios .get(`${cocktailSearchURL}${searchTerm}`)
+console.log(response.data)
   return "something "
 }
 
