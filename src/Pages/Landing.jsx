@@ -1,13 +1,13 @@
 import { useLoaderData } from "react-router-dom"
 import axios from "axios"
-const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
+const cocktailSearchURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 
 
 
 export const loader = async () => {
 const searchTerm = "margarita"
 const response = await axios .get(`${cocktailSearchURL}${searchTerm}`)
-console.log(response.data)
+console.log(response)
   return "something "
 }
 
