@@ -7,18 +7,18 @@ import img from '../assets/not-found.svg'
 const Error = () => {
   const error = useRouteError();
   console.log(error);
-  
-  
-  return (
-  <Wrapper>
-    <div>
-      <img src= {img} alt='not found'/>
-      <h3>Internal Server Error</h3>
-      <p>We can't seem to find the page you are looking for!</p>
-      <Link to='/'>Back Home</Link>
-    </div>
-  </Wrapper>
-  )
+  if (error.status == 404) {
+    return (
+    <Wrapper>
+      <div>
+        <img src= {img} alt='not found'/>
+        <h3>Internal Server Error</h3>
+        <p>We can't seem to find the page you are looking for!</p>
+        <Link to='/'>Back Home</Link>
+      </div>
+    </Wrapper>
+    )
+}
   return <Wrapper>
   <div>
     <h3>Something went wrong</h3>
