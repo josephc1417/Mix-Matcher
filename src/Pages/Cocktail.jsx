@@ -1,6 +1,6 @@
 import { useLoaderData,Link } from "react-router-dom"
 import axios from "axios";
-import Wrapper from "../assets/wrappers/Cocktail"
+import Wrapper from "../assets/wrappers/CocktailPage"
 
 const singleCocktailURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
 
@@ -19,16 +19,18 @@ const {data} = await axios.get(`${singleCocktailURL}${id}`);
 }
 
 //*use data from the api to render the page (useLoaderData)
-
-
-
-
-
 const Cocktail = () => {
 const {id,data}= useLoaderData()
+if (!data) return <h2>Something went wrong...</h2>
   
   const singleDrink = data.drinks[0]
-  const {strDrink: name, strDrinkThumb: image, strAlcoholic: info, strGlass: glass, strInstructions: instructions, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5} = singleDrink
+  const {strDrink: name, strDrinkThumb: image, strAlcoholic: info, strGlass: glass, strInstructions: instructions, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5} = singleDrink;
+
+  console.log(singleDrink);
+  
+  const validIngredients = Object.keys(singleDrink).filter((key) => key.startsWith("strIngredient") && singleDrink[key]  !== null).map((key) => singleDrink[key]);
+
+  console.log(validIngredients);
   
   
   
@@ -44,6 +46,26 @@ const {id,data}= useLoaderData()
           <p>
             <span className="drink-data">Name:</span>
             {name}
+          </p>
+          <p>
+            <span className="drink-data">info:</span>
+            {info}
+          </p>
+          <p>
+            <span className="drink-data">glass :</span>
+            {glass}
+          </p>
+          <p>
+            <span className="drink-data">Instructions :</span>
+            {instructions }
+          </p>
+          <p>
+            <span className="drink-data">Instructions :</span>
+            {validIngredients.map((ingredient, index) => {
+              return <span className="ing" key={item}>{ingredient}
+              {item}{index< validIngredients.length-1 ? ',':''}
+              </span> 
+            })}
           </p>
         </div>
       </div>
