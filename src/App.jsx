@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'; 
 import { HomeLayout, Landing,Error,Newsletter,Cocktail,About,SinglePageError } from './Pages';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; 
@@ -10,7 +10,8 @@ import {action as newsletterAction} from './Pages/Newsletter'
 
 
 
-
+{/*This will determine how long the query Client will be valid Globally */}
+{/*This will be passed to the landing loader function */}
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,9 +29,9 @@ const router = createBrowserRouter([
     children: [
     {
     index:true, 
-    loader: landingLoader,
     errorElement:<SinglePageError />,
     element: <Landing />,
+    loader: landingLoader(queryClient)
   },  
     {
     path: 'Cocktail/:id',
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
+
+{/*wrapping the App in QueryClientProvider and ReactQueryDevtools and passing the queryClient to the provider */}
 const App = () => {
   return(
   <>
